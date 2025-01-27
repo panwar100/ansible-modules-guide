@@ -36,7 +36,7 @@ Ansible modules are the building blocks for automating tasks. They are small, re
 
 Output:
 
-![Screenshot from 2025-01-27 22-41-16](https://github.com/user-attachments/assets/a5f623b3-45c9-4018-a2e7-8b77bdc476de)
+   ![Screenshot from 2025-01-27 22-41-16](https://github.com/user-attachments/assets/a5f623b3-45c9-4018-a2e7-8b77bdc476de)
 
 
 #
@@ -49,7 +49,7 @@ Output:
 
 Output:
 
-![Screenshot from 2025-01-27 22-42-37](https://github.com/user-attachments/assets/6f9867cb-7640-4df4-a4e3-c9af1e2c23b7)
+ ![Screenshot from 2025-01-27 22-42-37](https://github.com/user-attachments/assets/6f9867cb-7640-4df4-a4e3-c9af1e2c23b7)
 
 
 
@@ -60,7 +60,7 @@ Output:
  
        ansible all -m shell -a "echo $HOME"
 
-![Screenshot from 2025-01-27 22-44-00](https://github.com/user-attachments/assets/5d64eff1-cfc1-4704-934a-06096e0692b5)
+     ![Screenshot from 2025-01-27 22-44-00](https://github.com/user-attachments/assets/5d64eff1-cfc1-4704-934a-06096e0692b5)
 
 
 Difference from Command Module: Supports shell features like variables, pipes, and redirects.
@@ -73,7 +73,7 @@ Difference from Command Module: Supports shell features like variables, pipes, a
 
       ansible all -m ansible.builtin.copy -a "src=/etc/hosts dest=/tmp/hosts"
 
-![Screenshot from 2025-01-27 22-45-14](https://github.com/user-attachments/assets/9bc833c5-b9d5-4b37-87da-320e88b5dc52)
+     ![Screenshot from 2025-01-27 22-45-14](https://github.com/user-attachments/assets/9bc833c5-b9d5-4b37-87da-320e88b5dc52)
 
 
 #
@@ -84,13 +84,13 @@ Difference from Command Module: Supports shell features like variables, pipes, a
 
           ansible all -m file -a "dest=/tmp/new_directory state=directory mode=0755"
 
-![Screenshot from 2025-01-27 22-46-37](https://github.com/user-attachments/assets/6101feaa-ee2d-4e87-a208-7c52c33f4579)
+        ![Screenshot from 2025-01-27 22-46-37](https://github.com/user-attachments/assets/6101feaa-ee2d-4e87-a208-7c52c33f4579)
 
    - **Change File Permissions**:
     
          ansible all -m file -a "dest=/tmp/sample.txt mode=0644"
 
-![Screenshot from 2025-01-27 22-50-50](https://github.com/user-attachments/assets/ec4e70ee-9d98-490e-bbe7-e80b74d23155)
+       ![Screenshot from 2025-01-27 22-50-50](https://github.com/user-attachments/assets/ec4e70ee-9d98-490e-bbe7-e80b74d23155)
 
 
 #
@@ -101,18 +101,19 @@ Difference from Command Module: Supports shell features like variables, pipes, a
 
         python3 -c 'import crypt,getpass;pw=getpass.getpass();print(crypt.crypt(pw) if (pw==getpass.getpass("Confirm: ")) else exit())'
 
+       
+       ![Screenshot from 2025-01-27 23-07-48](https://github.com/user-attachments/assets/a13653c8-34d4-4d1e-a6a4-d4c33e044ab5)
+
         ansible all -b -m ansible.builtin.user -a "name=test_user password=<encrypted_password>"
 
-![Screenshot from 2025-01-27 23-07-48](https://github.com/user-attachments/assets/a13653c8-34d4-4d1e-a6a4-d4c33e044ab5)
-
-![Screenshot from 2025-01-27 23-05-36](https://github.com/user-attachments/assets/2a959811-2979-4ec9-8987-54a6460df261)
+       ![Screenshot from 2025-01-27 23-05-36](https://github.com/user-attachments/assets/2a959811-2979-4ec9-8987-54a6460df261)
 
 
   - **Delete a User**:
 
         ansible all -b -m ansible.builtin.user -a "name=test_user state=absent"
 
-![Screenshot from 2025-01-27 23-09-44](https://github.com/user-attachments/assets/3cc4b720-3248-4a61-ac72-2ba897d06dd3)
+       ![Screenshot from 2025-01-27 23-09-44](https://github.com/user-attachments/assets/3cc4b720-3248-4a61-ac72-2ba897d06dd3)
 
 
 #
@@ -123,13 +124,13 @@ Difference from Command Module: Supports shell features like variables, pipes, a
 
         ansible all -b -m service -a "name=httpd state=started"
 
-![Screenshot from 2025-01-27 23-15-49](https://github.com/user-attachments/assets/10c3ba50-ee53-43e7-afc1-c95ac38fd94d)
+       ![Screenshot from 2025-01-27 23-15-49](https://github.com/user-attachments/assets/10c3ba50-ee53-43e7-afc1-c95ac38fd94d)
 
   - **Enable a Service**:
 
         ansible all -b -m service -a "name=httpd enabled=yes"
 
-![Screenshot from 2025-01-27 23-18-05](https://github.com/user-attachments/assets/80923292-9295-40b1-91c2-15bbe3ff76f9)
+       ![Screenshot from 2025-01-27 23-18-05](https://github.com/user-attachments/assets/80923292-9295-40b1-91c2-15bbe3ff76f9)
 
 
 #
@@ -140,21 +141,21 @@ Difference from Command Module: Supports shell features like variables, pipes, a
 
         ansible all -b -m yum -a "name=httpd state=present"
 
-![Screenshot from 2025-01-27 23-11-23](https://github.com/user-attachments/assets/c9c8823d-d07b-4c34-8ee8-efd430e63194)
+       ![Screenshot from 2025-01-27 23-11-23](https://github.com/user-attachments/assets/c9c8823d-d07b-4c34-8ee8-efd430e63194)
 
 
   - **Remove a Package**:
 
         ansible all -b -m yum -a "name=httpd state=absent"
 
-![Screenshot from 2025-01-27 23-23-51](https://github.com/user-attachments/assets/7c4da9d0-2ba1-47e4-b962-aca98e984232)
+       ![Screenshot from 2025-01-27 23-23-51](https://github.com/user-attachments/assets/7c4da9d0-2ba1-47e4-b962-aca98e984232)
 
     
   - **Update a Package**:
 
         ansible all -b -m yum -a "name=httpd state=latest"
 
-![Screenshot from 2025-01-27 23-19-06](https://github.com/user-attachments/assets/1382acf1-70aa-48f8-9c6f-5434d6988d79)
+       ![Screenshot from 2025-01-27 23-19-06](https://github.com/user-attachments/assets/1382acf1-70aa-48f8-9c6f-5434d6988d79)
 
 
 ---
@@ -164,28 +165,28 @@ Difference from Command Module: Supports shell features like variables, pipes, a
 
        ansible all -m shell -a "touch /tmp/testfile"
 
-![Screenshot from 2025-01-27 23-24-35](https://github.com/user-attachments/assets/d343c43f-41ec-4fae-a3c5-57e2d3722f2f)
+      ![Screenshot from 2025-01-27 23-24-35](https://github.com/user-attachments/assets/d343c43f-41ec-4fae-a3c5-57e2d3722f2f)
 
 
 2. **Check Disk Usage**:
 
        ansible all -m command -a "df -h"
 
-![Screenshot from 2025-01-27 23-25-39](https://github.com/user-attachments/assets/c83eea5b-946b-47f0-9375-b351f3e7bfe0)
+      ![Screenshot from 2025-01-27 23-25-39](https://github.com/user-attachments/assets/c83eea5b-946b-47f0-9375-b351f3e7bfe0)
 
 
 3. **Copy and Set Permissions**:
 
        ansible all -m copy -a "src=/etc/hosts dest=/tmp/hosts mode=0644"
 
-![Screenshot from 2025-01-27 23-26-46](https://github.com/user-attachments/assets/b44d9159-48fa-4d31-9e13-5c41d8bd7c59)
+      ![Screenshot from 2025-01-27 23-26-46](https://github.com/user-attachments/assets/b44d9159-48fa-4d31-9e13-5c41d8bd7c59)
 
 
 4. **Restart a Service**:
 
        ansible all -b -m service -a "name=httpd state=restarted"
 
-![Screenshot from 2025-01-27 23-29-33](https://github.com/user-attachments/assets/9ff11d9d-b01c-4c41-8070-24a0b72ed2ef)
+      ![Screenshot from 2025-01-27 23-29-33](https://github.com/user-attachments/assets/9ff11d9d-b01c-4c41-8070-24a0b72ed2ef)
 
 
 ---
