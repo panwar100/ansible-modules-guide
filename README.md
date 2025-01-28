@@ -24,6 +24,40 @@ This repository provides a detailed guide to Ansible modules and their usage for
 
 Ansible modules are the building blocks for automating tasks. They are small, reusable units of code that can be used independently or in playbooks. This guide explains frequently used modules with real-world examples.
 
+### General Syntax of an Ansible Ad-Hoc Command:
+```
+ansible <host-pattern> -b -m <module-name> -a "<module-arguments>"
+```
+
+### Explanation of Each Component:
+**1. ansible**:
+The command-line tool used to run ad-hoc commands or tasks on managed nodes.
+
+**2.` <host-pattern>`**:
+
+This specifies the target group of hosts or a single host on which the command will run.
+
+Example:
+
+all: Run on all hosts in your inventory.
+
+web: Run on a group of hosts named "web".
+
+hostname: Run on a specific host.(e.g.**demo** use in below content)
+
+**3. -b (short for --become)**:
+
+Enables privilege escalation (similar to sudo in Linux). This is needed when performing tasks that require administrative privileges.
+
+**4. -m `<module-name>`**:
+
+Specifies the module to use. A module is like a function in Ansible that performs a specific task.
+In your example, group is the module for managing system groups.
+
+**5. -a `"<module-arguments>"`**:
+
+Provides the arguments or options to the module. These arguments control what the module does.
+
 ---
 
 # Core Modules
@@ -115,6 +149,7 @@ Difference from Command Module: Supports shell features like variables, pipes, a
 
        ![Screenshot from 2025-01-27 23-09-44](https://github.com/user-attachments/assets/3cc4b720-3248-4a61-ac72-2ba897d06dd3)
 
+ 
 
 #
 ## Service Module
@@ -138,6 +173,11 @@ Difference from Command Module: Supports shell features like variables, pipes, a
 - **Purpose**: Install, update, or remove packages on RPM-based systems.
 - **Examples**:
   - **Install a Package**:
+
+       - check httpd:
+
+       ![Screenshot from 2025-01-28 23-30-46](https://github.com/user-attachments/assets/bd46e6d4-5ecc-4f20-a2eb-63919dde66a4)
+
 
         ansible all -b -m yum -a "name=httpd state=present"
 
@@ -181,14 +221,60 @@ Difference from Command Module: Supports shell features like variables, pipes, a
 
       ![Screenshot from 2025-01-27 23-26-46](https://github.com/user-attachments/assets/b44d9159-48fa-4d31-9e13-5c41d8bd7c59)
 
+      ![Screenshot from 2025-01-28 23-41-42](https://github.com/user-attachments/assets/18b5f5a0-14c3-4071-b398-ff105507df8e)
 
+       
 4. **Restart a Service**:
 
        ansible all -b -m service -a "name=httpd state=restarted"
 
       ![Screenshot from 2025-01-27 23-29-33](https://github.com/user-attachments/assets/9ff11d9d-b01c-4c41-8070-24a0b72ed2ef)
 
+5. **Groups**:
+  
+   - 5.0 **Add group**:
 
+         ansible demo -b -m group  -a "name=g1 state=present"
+
+        ![Screenshot from 2025-01-28 22-46-26](https://github.com/user-attachments/assets/472f23ca-ae94-4bb0-9435-869dae753795)
+ 
+    - 5.1 **check group**:
+ 
+           ansible demo -b -m shell -a "cat /etc/group | grep g1"
+
+         ![Screenshot from 2025-01-28 22-50-16](https://github.com/user-attachments/assets/157c059a-3c78-4f9c-888c-df6c6847a0c0)
+
+    - 5.2 **check primary group of user**:
+
+          ansible demo -b -m shell -a "groups testuser1"
+
+         ![Screenshot from 2025-01-28 22-57-12](https://github.com/user-attachments/assets/444977ac-c5a6-4e06-a61f-8e006947524c)
+
+    - 5.3  **Change group**:
+
+      i)add user to primary group
+    
+          ansible demo -b -m ansible.builtin.user -a "name=testuser1 uid=1003 group=g1"
+
+        ![Screenshot from 2025-01-28 23-06-16](https://github.com/user-attachments/assets/77e111d9-44d9-459c-81a9-9bfa60c9706e)
+
+        ![Screenshot from 2025-01-28 23-08-38](https://github.com/user-attachments/assets/e31fe5b8-15d9-4b6c-887c-29332bb6cfce)
+
+       ii)add user to secondry group
+
+          ansible demo -b -m ansible.builtin.user -a "name=testuser1 groups=g2"
+     
+         ![Screenshot from 2025-01-28 23-15-36](https://github.com/user-attachments/assets/c176ad77-dbb6-4ae7-8833-4c2564523df5)
+
+        ![Screenshot from 2025-01-28 23-16-49](https://github.com/user-attachments/assets/ffc03eb2-aff3-4dc0-b192-2f2d74fe6f76)
+
+   - 5.4 **Remove group**:
+
+         ansible demo -b -m shell -a "gpasswd -d testuser1 g2"
+
+
+        ![Screenshot from 2025-01-28 23-19-31](https://github.com/user-attachments/assets/30952e6d-7d18-42d9-9d4b-f353d8f03d8e)
+       
 ---
 
 # Best Practices
